@@ -1,9 +1,13 @@
-public class Currency implements CurrencyInterface {
-    private String name;
-    private double prizeInRelationToThePolishZloty;
+import java.util.Locale;
 
-    public Currency(String name,double prizeInRelationToThePolishZloty){
-        this.name=name;
+public class Currency implements CurrencyInterface {
+
+    private java.util.Currency currency;
+    private double prizeInRelationToThePolishZloty;
+    private static final Locale POLAND_LOCALE=new Locale("pl", "PL");
+
+    public Currency(String nameCurrency,double prizeInRelationToThePolishZloty){
+        this.currency= java.util.Currency.getInstance(nameCurrency);
         this.prizeInRelationToThePolishZloty=prizeInRelationToThePolishZloty;
 
     }
@@ -15,6 +19,13 @@ public class Currency implements CurrencyInterface {
 
     @Override
     public  String getNameCurrency(){
-        return name;
+        return currency.getDisplayName(POLAND_LOCALE);
     }
+
+    @Override
+    public String getSymbol(){
+        return currency.getSymbol(POLAND_LOCALE);
+    }
+
+
 }
