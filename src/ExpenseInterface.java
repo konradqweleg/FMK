@@ -5,11 +5,12 @@ public interface ExpenseInterface {
     public long  getYearCost();
     public long  getAllRemainingCost();
     public long  getAllExpenseCost();
-    public long  getExpenseName();
+
     public String getNameExpense();
     public int getRemainingDay();
     public int getRemainingMonth();
     public int getRemainingWeek();
     public int getRemainingYears();
+    public String getStringRepresentations();
 
 }

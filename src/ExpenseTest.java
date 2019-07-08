@@ -6,80 +6,115 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ExpenseTest {
 
-    /*
-    @Test void checkExpectValueExpenseinPeriodDate(){
-        Expense expense = new Expense(1000,"Koszta oświetlenia", LocalDate.of(2019,7,4),
-                LocalDate.of(2021,7,11));
 
-        long dayCost= expense.getDayCost();
-        assertEquals();
+  private  Expense expense;
+  private  Expense expense2;
 
-        long weekCost= expense.getWeekCost();
-        assertEquals(1000,weekCost);
+    private ExpenseTest(){
+         expense = new Expense(new Cost(1000,CostDuration.WEEK),"Oświetlenie Stadionu",
+                LocalDate.of(2019,7,4),LocalDate.of(2021,7,4));
 
-        long monthCost = expense.getMonthCost();
-        assertEquals(4000,monthCost);
-
-        long yearsCost = expense.getYearsCost();
-        assertEquals(48000,yearsCost);
-
+        expense2 = new Expense(new Cost(1000,CostDuration.DAY),"Oświetlenie Stadionu",
+                LocalDate.of(2019,7,4),LocalDate.of(2019,7,9));
     }
 
-
-    @Test void checkExpectName(){
-        Expense expense = new Expense(1000,"Koszta oświetlenia");
-        assertEquals("Koszta oświetlenia",expense.getNameExpense());
-
-    }
-*/
-
+    @Test
     public void  getWeekCostTest(){
 
+
+        assertEquals(1000,expense.getWeekCost());
     }
 
     @Test
     public void  getDayCostTest(){
-        Expense expense = new Expense(new Cost(1000,CostDuration.WEEK),"Oświetlenie Stadionu",
-                LocalDate.of(2019,7,4),LocalDate.of(2021,7,4));
 
-        assertEquals(1000,expense.getDayCost());
+
+        assertEquals(143,expense.getDayCost());
+
+
 
     }
 
+    @Test
     public void  getMonthCostTest(){
 
+
+        assertEquals(4429,expense.getMonthCost());
+
+
+        assertEquals(2000,expense2.getMonthCost());
+
+
+
+
     }
+    @Test
     public void  getYearCostTest()
     {
 
+
+        assertEquals(52_286,expense.getYearCost());
+
+
+
+        assertEquals(2000,expense2.getYearCost());
+
     }
+
+    @Test
     public void  getAllRemainingCostTest()
     {
 
+
+        assertEquals(104_000,expense.getAllRemainingCost());
+
     }
+
+    @Test
     public void  getAllExpenseCostTest()
     {
 
-    }
-    public void  getExpenseNameTest(){
 
+        assertEquals(104_429,expense.getAllExpenseCost());
     }
+
+
+    @Test
     public void getNameExpenseTest()
     {
 
+        assertEquals("Oświetlenie Stadionu",expense.getNameExpense());
+
     }
+
+    @Test
     public void getRemainingDayTest(){
 
-    }
-    public void getRemainingMonthTest(){
+        assertEquals(728,expense.getRemainingDay());
 
     }
+    @Test
+    public void getRemainingMonthTest(){
+
+        assertEquals(23,expense.getRemainingMonth());
+
+    }
+    @Test
     public void getRemainingWeekTest()
     {
 
+        assertEquals(104,expense.getRemainingWeek());
     }
+    @Test
     public void getRemainingYearsTest(){
 
+        assertEquals(1,expense.getRemainingYears());
+
+    }
+
+    @Test
+    public void getStringRepresentations(){
+        assertEquals("1 rok 23 miesiące ",expense.getStringRepresentations());
     }
 
 

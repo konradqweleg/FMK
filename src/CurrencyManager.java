@@ -85,4 +85,10 @@ public class CurrencyManager implements CurrencyManagerInterface {
         }
 
     }
+
+
+    @Override
+    public String getSymbolCurrency(){
+        return currency.getSymbol();
+    }
 }

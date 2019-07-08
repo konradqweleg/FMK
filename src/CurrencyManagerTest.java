@@ -32,4 +32,9 @@ class CurrencyManagerTest {
 
     }
 
+    @Test void getSymbolTest(){
+        CurrencyManagerInterface currencyManagerInterface =CurrencyManager.newInstanceCurrencyManager();
+        assertEquals("EUR",currencyManagerInterface.getSymbolCurrency());
+    }
+
 }

@@ -13,8 +13,8 @@ class CostTest {
 
 
     @Test void checkWeekCost(){
-        Cost dayCost =new Cost(1200,CostDuration.WEEK);
-        assertEquals(1200,dayCost.getWeekCost());
+        Cost dayCost =new Cost(10000,CostDuration.WEEK);
+        assertEquals(10000,dayCost.getWeekCost());
 
 
 

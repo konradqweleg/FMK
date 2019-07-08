@@ -1,4 +1,4 @@
-public class Cost {
+public class Cost implements CostInterface {
     private double cost;
     private static final double DAY_OF_WEEK=7;
 
@@ -10,14 +10,23 @@ public class Cost {
             cost=amount;
         }
 
+
     }
 
+    @Override
+    public double getDayCostDouble(){
+        return cost;
+    }
+
+    @Override
     public long getDayCost(){
         return Math.round(cost);
     }
 
-
+    @Override
     public long getWeekCost(){
-        return  Math.round(cost * DAY_OF_WEEK);
+
+
+        return Math.round(cost * DAY_OF_WEEK);
     }
 }
