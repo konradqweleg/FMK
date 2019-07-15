@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 
 public class GameCalendar {
-    private static final LocalDate gameDate;
+    private static  LocalDate gameDate;
     private static  GameCalendar gameCalendar;
     private  GameCalendar(){ }
 
@@ -21,6 +21,9 @@ public class GameCalendar {
 
     }
 
+    public static void addDaysToActualDate(int quantity){
+      gameDate=  gameDate.plusDays(quantity);
+    }
 
     public static LocalDate getActualGameDate(){
         return gameDate;

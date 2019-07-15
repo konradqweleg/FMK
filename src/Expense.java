@@ -118,6 +118,42 @@ public class Expense implements ExpenseInterface {
 
     }
 
+    private String formatStringMonthQuantity(int quantity){
+        if(quantity==1){
+            return " miesiąć ";
+        }
+        else if(quantity==2 || quantity ==3 ||quantity ==4){
+            return " miesiącę ";
+        }
+        else{
+            return " miesięcy ";
+        }
+    }
+
+
+    private String formatStringWeekQuantity(int quantity){
+        if(quantity==1){
+            return " tydzień ";
+        }
+        else if(quantity==2 || quantity ==3 ||quantity ==4){
+            return " tygodnie ";
+        }
+        else{
+            return " tygodni ";
+        }
+    }
+
+
+    private String formatStringDaysQuantity(int quantity){
+        if(quantity==1){
+            return " dzień ";
+        }
+        else {
+            return " dni ";
+        }
+
+    }
+
     @Override
     public String getStringRepresentations(){
         StringBuilder representation = new StringBuilder();
@@ -128,23 +164,26 @@ public class Expense implements ExpenseInterface {
 
         if(getRemainingMonth()>0){
             int quantityMonth=getRemainingMonth()-(12*getRemainingYears());
-            representation.append(quantityMonth+" Miesięcy ");
+            representation.append(quantityMonth+formatStringMonthQuantity(quantityMonth));
         }
 
-        if(getRemainingWeek()>0){
-           int quantityWeek=getRemainingDay();
-           quantityWeek-= 365*getRemainingDay();
+        LocalDate dataCalculationQuantityWeek =GameCalendar.getActualGameDate();
+        int quantityWeek=0;
 
-           representation.append(quantityWeek+" tygodni ");
+        if(getRemainingWeek()>0){
+
+             dataCalculationQuantityWeek=dataCalculationQuantityWeek.plusYears(getRemainingYears());
+             dataCalculationQuantityWeek=dataCalculationQuantityWeek.plusMonths(getRemainingMonth()-(12*getRemainingYears()));
+             quantityWeek=(int)WEEKS.between(dataCalculationQuantityWeek,toTime);
+             representation.append(quantityWeek+formatStringWeekQuantity(quantityWeek));
         }
 
         if(getRemainingDay()>0){
-            int quantityDay=getRemainingDay();
-            quantityDay-=getRemainingWeek()*7;
 
+            LocalDate dateDaysCalculation=dataCalculationQuantityWeek.plusWeeks(quantityWeek);
+            int quantityDays=(int)DAYS.between(dateDaysCalculation,toTime);
 
-
-            representation.append(quantityDay+" dni. ");
+            representation.append(quantityDays+formatStringDaysQuantity(quantityDays));
         }
 
 

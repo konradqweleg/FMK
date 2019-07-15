@@ -114,7 +114,7 @@ class ExpenseTest {
 
     @Test
     public void getStringRepresentations(){
-        assertEquals("1 rok 23 miesiące ",expense.getStringRepresentations());
+        assertEquals("1 rok 11 miesięcy 3 tygodnie 6 dni ",expense.getStringRepresentations());
     }
 
 
